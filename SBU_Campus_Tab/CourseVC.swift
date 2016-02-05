@@ -24,7 +24,7 @@ struct Course{
 
 
 
-class ThirdViewController: UITableViewController {
+class CourseVC: UITableViewController {
     
     var courses: [Course] = []
     

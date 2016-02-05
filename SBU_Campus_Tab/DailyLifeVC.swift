@@ -10,7 +10,7 @@
 import UIKit
 import GoogleMaps
 
-class FirstViewController: UIViewController {
+class DailyLifeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

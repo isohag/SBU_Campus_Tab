@@ -1,16 +1,19 @@
-//  Chat
+// Events
 //
-//  ForuthViewController.swift
+//  SecondViewController.swift
 //  SBU_Campus_Tab
 //
 //  Created by Rashedul on 11/9/15.
 //  Copyright © 2015 Rashedul. All rights reserved.
 //
 
-
 import UIKit
+import EventKit
+import EventKitUI
 
-class FourthViewController: UIViewController {
+class EventsVC: UIViewController {
+    //  Create Event Store instance
+    let eventStore = EKEventStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,7 @@ class FourthViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+
+
 }
 
