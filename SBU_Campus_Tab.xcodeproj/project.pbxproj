@@ -18,6 +18,7 @@
 		C142DD2D1BF11559006A6295 /* SBU_Campus_TabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD2C1BF11559006A6295 /* SBU_Campus_TabUITests.swift */; };
 		C142DD3B1BF119DF006A6295 /* CourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD3A1BF119DF006A6295 /* CourseVC.swift */; };
 		C142DD3D1BF119F5006A6295 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD3C1BF119F5006A6295 /* ChatVC.swift */; };
+		C1E230951C69883D00B7BCEB /* MapSearchTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E230941C69883D00B7BCEB /* MapSearchTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		C142DD2E1BF11559006A6295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C142DD3A1BF119DF006A6295 /* CourseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseVC.swift; sourceTree = "<group>"; };
 		C142DD3C1BF119F5006A6295 /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		C1E230941C69883D00B7BCEB /* MapSearchTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				C142DD0A1BF11559006A6295 /* AppDelegate.swift */,
 				C142DD0C1BF11559006A6295 /* DailyLifeVC.swift */,
+				C1E230941C69883D00B7BCEB /* MapSearchTVC.swift */,
 				C142DD0E1BF11559006A6295 /* EventsVC.swift */,
 				C142DD3A1BF119DF006A6295 /* CourseVC.swift */,
 				C142DD3C1BF119F5006A6295 /* ChatVC.swift */,
@@ -346,6 +349,7 @@
 				C142DD0B1BF11559006A6295 /* AppDelegate.swift in Sources */,
 				C142DD3D1BF119F5006A6295 /* ChatVC.swift in Sources */,
 				C142DD3B1BF119DF006A6295 /* CourseVC.swift in Sources */,
+				C1E230951C69883D00B7BCEB /* MapSearchTVC.swift in Sources */,
 				C142DD0D1BF11559006A6295 /* DailyLifeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,10 @@
 import UIKit
 import GoogleMaps
 
-class DailyLifeVC: UIViewController {
+class DailyLifeVC: UIViewController, UISearchBarDelegate {
+    //  MARK:-  Variables
+    var locations = [GMSMarker]()
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +22,18 @@ class DailyLifeVC: UIViewController {
             longitude: -73.123646, zoom: 17)
         let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
         mapView.myLocationEnabled = true
-        mapView.settings.myLocationButton = true;
+        mapView.settings.myLocationButton = true
         mapView.padding = UIEdgeInsetsMake(0, 0, bottomLayoutGuide.length + 60, 0)
         loadMarkers(mapView)
         self.view = mapView
+        
+        //  Search 
+        //searchController.searchResultsUpdater = MapSearchTVC
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchBar.placeholder = "Search Building Name"
+        self.view.addSubview(searchController.searchBar)
+        //tableView.tableHeaderView = searchController.searchBar
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +52,7 @@ class DailyLifeVC: UIViewController {
         SACLoc.title = "SAC"
         SACLoc.snippet = "Stony Brook University"
         SACLoc.map = mapView
+        locations.append(SACLoc)
         
         //  Melvile library
         let melville = GMSMarker()
@@ -48,6 +60,7 @@ class DailyLifeVC: UIViewController {
         melville.title = "Melville Library"
         melville.snippet = "Stony Brook Univeristy"
         melville.map = mapView
+        locations.append(melville)
         
         //  Light Engineering
         let lightEngr = GMSMarker()
@@ -55,6 +68,7 @@ class DailyLifeVC: UIViewController {
         lightEngr.title = "Light Engineering"
         lightEngr.snippet = "Stony Brook Univeristy"
         lightEngr.map = mapView
+        locations.append(lightEngr)
         
         //  Javits Center
         let javits = GMSMarker()
@@ -62,6 +76,7 @@ class DailyLifeVC: UIViewController {
         javits.title = "Javits Lecture Hall"
         javits.snippet = "Stony Brook Univeristy"
         javits.map = mapView
+        locations.append(javits)
         
         //  Harriman Hall
         let hariman = GMSMarker()
@@ -69,6 +84,7 @@ class DailyLifeVC: UIViewController {
         hariman.title = "Harriman Hall"
         hariman.snippet = "Stony Brook Univeristy"
         hariman.map = mapView
+        locations.append(hariman)
         
         //  Frey Hall
         let frey = GMSMarker()
@@ -76,6 +92,7 @@ class DailyLifeVC: UIViewController {
         frey.title = "Frey Hall"
         frey.snippet = "Stony Brook Univeristy"
         frey.map = mapView
+        locations.append(frey)
         
         //  Chemistry
         let chem = GMSMarker()
@@ -83,6 +100,7 @@ class DailyLifeVC: UIViewController {
         chem.title = "Chemistry Building"
         chem.snippet = "Stony Brook Univeristy"
         chem.map = mapView
+        locations.append(chem)
         
         //  Psychology
         let psych = GMSMarker()
@@ -90,6 +108,7 @@ class DailyLifeVC: UIViewController {
         psych.title = "Psychology A"
         psych.snippet = "Stony Brook Univeristy"
         psych.map = mapView
+        locations.append(psych)
         
         //  New Computer Science
         let newCompSci = GMSMarker()
@@ -97,6 +116,7 @@ class DailyLifeVC: UIViewController {
         newCompSci.title = "New Computer Science"
         newCompSci.snippet = "Stony Brook Univeristy"
         newCompSci.map = mapView
+        locations.append(newCompSci)
         
         // Old Computer Science
         let oldCompSci = GMSMarker()
@@ -104,6 +124,7 @@ class DailyLifeVC: UIViewController {
         oldCompSci.title = "Old Computer Science"
         oldCompSci.snippet = "Stony Brook Univeristy"
         oldCompSci.map = mapView
+        locations.append(oldCompSci)
         
         //  Humanities
         let humanities = GMSMarker()
@@ -111,6 +132,7 @@ class DailyLifeVC: UIViewController {
         humanities.title = "Humanities"
         humanities.snippet = "Stony Brook Univeristy"
         humanities.map = mapView
+        locations.append(humanities)
     }
 
 }
