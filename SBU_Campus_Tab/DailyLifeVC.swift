@@ -10,10 +10,15 @@
 import UIKit
 import GoogleMaps
 
-class DailyLifeVC: UIViewController, UISearchBarDelegate {
+class DailyLifeVC: UIViewController,  UISearchBarDelegate {
+    
     //  MARK:-  Variables
     var locations = [GMSMarker]()
-    let searchController = UISearchController(searchResultsController: nil)
+    var filteredLocations = [GMSMarker]()
+    
+    //let searchController = UISearchController(searchResultsController: nil)
+    
+    var locationSearchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +33,27 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate {
         self.view = mapView
         
         //  Search 
-        //searchController.searchResultsUpdater = MapSearchTVC
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        searchController.searchBar.placeholder = "Search Building Name"
-        self.view.addSubview(searchController.searchBar)
-        //tableView.tableHeaderView = searchController.searchBar
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        configSearchBar()
+        self.view.addSubview(locationSearchController.searchBar)
     }
     
+    private func configSearchBar() {
+        // Configure LocationSearchController
+        self.locationSearchController = ({
+            // Setup Two: Alternative - This presents the results in a sepearate tableView
+            let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+            let alternateController:MapSearchTVC = storyBoard.instantiateViewControllerWithIdentifier("searchTVC") as! MapSearchTVC
+            let controller = UISearchController(searchResultsController: alternateController)
+            controller.hidesNavigationBarDuringPresentation = false
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchResultsUpdater = alternateController
+            controller.definesPresentationContext = false
+            controller.searchBar.sizeToFit()
+            
+            return controller
+        })()
+    }
+
     //  Hide status bar
     override func prefersStatusBarHidden() -> Bool {return true}
     

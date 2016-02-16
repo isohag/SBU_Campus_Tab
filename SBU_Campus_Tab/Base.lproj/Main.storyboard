@@ -21,19 +21,27 @@
                     <tabBarItem key="tabBarItem" title="Daily Life" image="dailylife" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="njZ-1w-bIP">
+                    <connections>
+                        <outlet property="delegate" destination="tsR-hK-woN" id="yfX-ge-NXZ"/>
+                        <outlet property="searchContentsController" destination="9pv-A4-QxB" id="K65-lZ-KEn"/>
+                        <outlet property="searchResultsDataSource" destination="9pv-A4-QxB" id="WxA-vU-75L"/>
+                        <outlet property="searchResultsDelegate" destination="9pv-A4-QxB" id="fbs-Hy-QXX"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="749.5" y="-366.5"/>
         </scene>
         <!--Map SearchTVC-->
         <scene sceneID="92r-xk-spg">
             <objects>
-                <tableViewController id="54t-WA-w77" customClass="MapSearchTVC" customModule="SBU_Campus_Tab" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="searchTVC" id="54t-WA-w77" customClass="MapSearchTVC" customModule="SBU_Campus_Tab" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cHO-fI-hoY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" textLabel="jY7-mf-1Bj" style="IBUITableViewCellStyleDefault" id="bEj-8v-YVN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MVCell" textLabel="jY7-mf-1Bj" style="IBUITableViewCellStyleDefault" id="bEj-8v-YVN">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bEj-8v-YVN" id="R3W-ih-Fhd">
@@ -176,6 +184,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXP-ou-dQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-0.5" y="868.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="uUc-md-0Vs">
+            <objects>
+                <viewController id="v0W-p7-3ai" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mWl-1e-r7e"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Zq-x1-Nst"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H5F-Ho-4VU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FCo-nO-fAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
