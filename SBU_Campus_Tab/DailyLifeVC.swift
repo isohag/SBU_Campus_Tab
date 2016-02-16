@@ -10,10 +10,11 @@
 import UIKit
 import GoogleMaps
 
-class DailyLifeVC: UIViewController,  UISearchBarDelegate {
+class DailyLifeVC: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var viewMap: GMSMapView!
+    @IBOutlet weak var table: UITableView!
     
     //  MARK:-  Variables
     var locations = [GMSMarker]()
@@ -21,15 +22,17 @@ class DailyLifeVC: UIViewController,  UISearchBarDelegate {
     
     //let searchController = UISearchController(searchResultsController: nil)
     
-    var locationSearchController = UISearchController()
+    var locationSearchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        table.hidden = true // hide table
         configMap()
         loadMarkers(viewMap)
-        //configSearchBar()
+        configSearchBar()
+        searchBar = locationSearchController.searchBar
     }
-    
+        
     private func configMap() {
         let camera = GMSCameraPosition.cameraWithLatitude(40.914468,
             longitude: -73.123646, zoom: 17)
@@ -46,15 +49,37 @@ class DailyLifeVC: UIViewController,  UISearchBarDelegate {
             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             let alternateController:MapSearchTVC = storyBoard.instantiateViewControllerWithIdentifier("searchTVC") as! MapSearchTVC
             let controller = UISearchController(searchResultsController: alternateController)
-            controller.hidesNavigationBarDuringPresentation = false
+            //controller.hidesNavigationBarDuringPresentation = false
             controller.dimsBackgroundDuringPresentation = false
             controller.searchResultsUpdater = alternateController
             controller.definesPresentationContext = false
             controller.searchBar.sizeToFit()
-            searchBar.delegate = alternateController
-            controller.delegate = alternateController
+            searchBar.delegate = self
+            //controller.delegate = alternateController
             return controller
         })()
+    }
+    
+    //  MARK: - Search
+    
+    internal func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        // called when text starts editing
+        print("Begin editing")
+        searchBar.showsCancelButton = true
+        table.hidden = false
+    }
+    
+    internal func searchBarSearchButtonClicked(searchBar: UISearchBar){
+        // called when keyboard search button pressed
+        searchBar.showsCancelButton = true
+        print("Pressed Enter!!!\n")
+    }
+    
+    internal func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        // called when cancel button pressed
+        table.hidden = true
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
     }
 
     //  Load Markers

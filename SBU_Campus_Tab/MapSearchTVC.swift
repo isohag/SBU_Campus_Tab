@@ -9,39 +9,35 @@
 import UIKit
 import GoogleMaps
 
-class MapSearchTVC: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, UISearchDisplayDelegate, UISearchControllerDelegate {
+class MapSearchTVC: UITableViewController, UISearchResultsUpdating {
 
-    let searchController = UISearchController(searchResultsController: nil)
+    
+    
     var locations = [GMSMarker]()
     var locationTitles = [String]()
     var filteredTitles = [String]()
     var searching = false
+    var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMarkers()
-        //configSearchBar()
         getTitles()
+        print("Hello Wold!!!\n")
     }
-    
-    private func configSearchBar() {
-        //  Search
-        //searchController.searchResultsUpdater = MapSearchTVC
-        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        searchController.searchBar.placeholder = "Search Building Name"
-        tableView.tableHeaderView = searchController.searchBar
-    }
-    
+
     private func getTitles() {
     for loc in locations {
             locationTitles.append(loc.title)
         }
     }
     
+    //  MARK: - Search
+    
     //  Protocol Function
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         //  Call custom function to resopond live
+        self.searchController = searchController
         filterContentForSearchText(searchController.searchBar.text!)
     }
 
@@ -50,18 +46,6 @@ class MapSearchTVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
             return title.lowercaseString.containsString(searchText.lowercaseString)
         }
         tableView.reloadData()
-    }
-    
-    //  MARK: - SearchBar Delegate
-    
-    internal func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        // called when text starts editing
-    }
-    
-    internal func searchBarSearchButtonClicked(searchBar: UISearchBar){
-        // called when keyboard search button pressed
-        searchBar.showsCancelButton = true
-        
     }
     
     //  MARK: - TableView

@@ -11,7 +11,7 @@
 		C142DD0B1BF11559006A6295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD0A1BF11559006A6295 /* AppDelegate.swift */; };
 		C142DD0D1BF11559006A6295 /* DailyLifeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD0C1BF11559006A6295 /* DailyLifeVC.swift */; };
 		C142DD0F1BF11559006A6295 /* EventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD0E1BF11559006A6295 /* EventsVC.swift */; };
-		C142DD121BF11559006A6295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C142DD101BF11559006A6295 /* Main.storyboard */; };
+		C142DD121BF11559006A6295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C142DD101BF11559006A6295 /* Main.storyboard */; settings = {ASSET_TAGS = (2, ); }; };
 		C142DD141BF11559006A6295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C142DD131BF11559006A6295 /* Assets.xcassets */; };
 		C142DD171BF11559006A6295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C142DD151BF11559006A6295 /* LaunchScreen.storyboard */; };
 		C142DD221BF11559006A6295 /* SBU_Campus_TabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD211BF11559006A6295 /* SBU_Campus_TabTests.swift */; };
@@ -226,6 +226,10 @@
 		C142DCFF1BF11558006A6295 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					1,
+					2,
+				);
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Rashedul;
 				TargetAttributes = {
