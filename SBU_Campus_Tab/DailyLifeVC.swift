@@ -12,6 +12,9 @@ import GoogleMaps
 
 class DailyLifeVC: UIViewController,  UISearchBarDelegate {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var viewMap: GMSMapView!
+    
     //  MARK:-  Variables
     var locations = [GMSMarker]()
     var filteredLocations = [GMSMarker]()
@@ -22,19 +25,18 @@ class DailyLifeVC: UIViewController,  UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prefersStatusBarHidden()
+        configMap()
+        loadMarkers(viewMap)
+        //configSearchBar()
+    }
+    
+    private func configMap() {
         let camera = GMSCameraPosition.cameraWithLatitude(40.914468,
             longitude: -73.123646, zoom: 17)
-        let mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
-        mapView.myLocationEnabled = true
-        mapView.settings.myLocationButton = true
-        mapView.padding = UIEdgeInsetsMake(0, 0, bottomLayoutGuide.length + 60, 0)
-        loadMarkers(mapView)
-        self.view = mapView
-        
-        //  Search 
-        configSearchBar()
-        self.view.addSubview(locationSearchController.searchBar)
+        viewMap.camera = camera
+        viewMap.myLocationEnabled = true
+        viewMap.settings.myLocationButton = true
+        viewMap.padding = UIEdgeInsetsMake(0, 0, bottomLayoutGuide.length + 60, 0)
     }
     
     private func configSearchBar() {
@@ -49,14 +51,12 @@ class DailyLifeVC: UIViewController,  UISearchBarDelegate {
             controller.searchResultsUpdater = alternateController
             controller.definesPresentationContext = false
             controller.searchBar.sizeToFit()
-            
+            searchBar.delegate = alternateController
+            controller.delegate = alternateController
             return controller
         })()
     }
 
-    //  Hide status bar
-    override func prefersStatusBarHidden() -> Bool {return true}
-    
     //  Load Markers
     func loadMarkers(mapView: GMSMapView) {
         //  SAC

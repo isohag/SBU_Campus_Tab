@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMaps
 
-class MapSearchTVC: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, UISearchDisplayDelegate {
+class MapSearchTVC: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, UISearchDisplayDelegate, UISearchControllerDelegate {
 
     let searchController = UISearchController(searchResultsController: nil)
     var locations = [GMSMarker]()
@@ -20,7 +20,7 @@ class MapSearchTVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMarkers()
-        configSearchBar()
+        //configSearchBar()
         getTitles()
     }
     
@@ -50,6 +50,18 @@ class MapSearchTVC: UITableViewController, UISearchBarDelegate, UISearchResultsU
             return title.lowercaseString.containsString(searchText.lowercaseString)
         }
         tableView.reloadData()
+    }
+    
+    //  MARK: - SearchBar Delegate
+    
+    internal func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        // called when text starts editing
+    }
+    
+    internal func searchBarSearchButtonClicked(searchBar: UISearchBar){
+        // called when keyboard search button pressed
+        searchBar.showsCancelButton = true
+        
     }
     
     //  MARK: - TableView
