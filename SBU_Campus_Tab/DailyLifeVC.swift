@@ -10,7 +10,7 @@
 import UIKit
 import GoogleMaps
 
-class DailyLifeVC: UIViewController, UISearchBarDelegate {
+class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var viewMap: GMSMapView!
@@ -19,18 +19,34 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate {
     //  MARK:-  Variables
     var locations = [GMSMarker]()
     var filteredLocations = [GMSMarker]()
+    var locationTitles = [String]()
+    var filteredTitles = [String]()
+    var searching = false
     
     //let searchController = UISearchController(searchResultsController: nil)
     
-    var locationSearchController = UISearchController(searchResultsController: nil)
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.hidden = true // hide table
         configMap()
         loadMarkers(viewMap)
-        configSearchBar()
-        searchBar = locationSearchController.searchBar
+        getTitles()
+        //configSearchBar()
+        searchController = UISearchController(searchResultsController: nil)
+        searchBar = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        //  set delegates
+        searchBar.delegate = self
+        table.dataSource = self
+        table.delegate = self
+    }
+    
+    private func getTitles() {
+        for loc in locations {
+            locationTitles.append(loc.title)
+        }
     }
         
     private func configMap() {
@@ -44,7 +60,7 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate {
     
     private func configSearchBar() {
         // Configure LocationSearchController
-        self.locationSearchController = ({
+        self.searchController = ({
             // Setup Two: Alternative - This presents the results in a sepearate tableView
             let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
             let alternateController:MapSearchTVC = storyBoard.instantiateViewControllerWithIdentifier("searchTVC") as! MapSearchTVC
@@ -60,6 +76,15 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate {
         })()
     }
     
+    //  MARK: - Search Protocol
+ 
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredTitles = locationTitles.filter { title in
+            return title.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        table.reloadData()
+    }
+
     //  MARK: - Search
     
     internal func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -80,6 +105,34 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate {
         table.hidden = true
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
+    }
+    
+    //  MARK: - TableView
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.searchBar.text == "" { print("locations\(locationTitles.count)")
+            return locationTitles.count
+        } else { print("filtered locations\(filteredTitles.count)")
+            return filteredTitles.count
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = "MyCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier,
+            forIndexPath: indexPath)
+        if searchController.active {searching = true}
+        if searchController.searchBar.text == "" {
+            cell.textLabel?.text = locationTitles[indexPath.row]
+        } else {
+            cell.textLabel?.text = filteredTitles[indexPath.row]
+        }
+        
+        return cell
     }
 
     //  Load Markers
@@ -175,3 +228,10 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate {
 
 }
 
+extension DailyLifeVC: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        //  Call custom function to resopond live
+        print("/nHello search updater/n")
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
