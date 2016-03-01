@@ -134,6 +134,22 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        NSLog("You selected cell number: \(indexPath.row)!")
+        let loc = locations[indexPath.row]
+        viewMap.clear()
+        loc.map = viewMap
+        let camera = GMSCameraPosition.cameraWithLatitude(loc.position.latitude,
+            longitude: loc.position.longitude, zoom: 18)
+        viewMap.camera = camera
+        searchBarCancelButtonClicked(searchController.searchBar)
+        /*
+        table.hidden = true
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()*/
+
+    }
 
     //  Load Markers
     func loadMarkers(mapView: GMSMapView) {
