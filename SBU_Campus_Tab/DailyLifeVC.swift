@@ -22,9 +22,6 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
     var locationTitles = [String]()
     var filteredTitles = [String]()
     var searching = false
-    
-    //let searchController = UISearchController(searchResultsController: nil)
-    
     var searchController: UISearchController!
     
     override func viewDidLoad() {
@@ -102,6 +99,11 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
     
     internal func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         // called when cancel button pressed
+        viewMap.clear()
+        for loc in locations {
+            loc.map = viewMap
+        }
+        configMap() // reset camera
         table.hidden = true
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
@@ -143,11 +145,8 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
         let camera = GMSCameraPosition.cameraWithLatitude(loc.position.latitude,
             longitude: loc.position.longitude, zoom: 18)
         viewMap.camera = camera
-        searchBarCancelButtonClicked(searchController.searchBar)
-        /*
+        
         table.hidden = true
-        searchBar.showsCancelButton = false
-        searchBar.resignFirstResponder()*/
 
     }
 
