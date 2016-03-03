@@ -17,12 +17,13 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
     @IBOutlet weak var table: UITableView!
     
     //  MARK:-  Variables
+    
     var locations = [GMSMarker]()
     var filteredLocations = [GMSMarker]()
     var locationTitles = [String]()
     var filteredTitles = [String]()
-    var searching = false
-    var searchController: UISearchController!
+    
+    //  MARK:-  ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +31,7 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
         configMap()
         loadMarkers(viewMap)
         getTitles()
-        //configSearchBar()
-        searchController = UISearchController(searchResultsController: nil)
-        searchBar = searchController.searchBar
-        searchController.searchResultsUpdater = self
-        //  set delegates
+        //  Delegates
         searchBar.delegate = self
         table.dataSource = self
         table.delegate = self
@@ -56,6 +53,7 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
     }
     
     private func configSearchBar() {
+        /*
         // Configure LocationSearchController
         self.searchController = ({
             // Setup Two: Alternative - This presents the results in a sepearate tableView
@@ -70,19 +68,22 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
             searchBar.delegate = self
             //controller.delegate = alternateController
             return controller
-        })()
+        })()*/
+    }
+
+    //  MARK: - Search
+    
+    internal func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        // called when text changes (including clear)
+        filterContentForSearchText(searchText)
     }
     
-    //  MARK: - Search Protocol
- 
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteredTitles = locationTitles.filter { title in
             return title.lowercaseString.containsString(searchText.lowercaseString)
         }
         table.reloadData()
     }
-
-    //  MARK: - Search
     
     internal func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         // called when text starts editing
@@ -114,21 +115,20 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+    //  Data Source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.searchBar.text == "" { print("locations\(locationTitles.count)")
+        if searchBar.text == "" { print("locations \(locationTitles.count)")
             return locationTitles.count
-        } else { print("filtered locations\(filteredTitles.count)")
+        } else { print("filtered locations \(filteredTitles.count)")
             return filteredTitles.count
         }
     }
-    
+    //  Labels for cell.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "MyCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier,
             forIndexPath: indexPath)
-        if searchController.active {searching = true}
-        if searchController.searchBar.text == "" {
+        if searchBar.text == "" {
             cell.textLabel?.text = locationTitles[indexPath.row]
         } else {
             cell.textLabel?.text = filteredTitles[indexPath.row]
@@ -136,7 +136,7 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
         
         return cell
     }
-    
+    //  Selected cell.
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         NSLog("You selected cell number: \(indexPath.row)!")
         let loc = locations[indexPath.row]
@@ -239,14 +239,5 @@ class DailyLifeVC: UIViewController, UISearchBarDelegate, UITableViewDelegate, U
         humanities.snippet = "Stony Brook Univeristy"
         humanities.map = mapView
         locations.append(humanities)
-    }
-
-}
-
-extension DailyLifeVC: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        //  Call custom function to resopond live
-        print("/nHello search updater/n")
-        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
