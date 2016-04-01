@@ -18,6 +18,9 @@
 		C142DD2D1BF11559006A6295 /* SBU_Campus_TabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD2C1BF11559006A6295 /* SBU_Campus_TabUITests.swift */; };
 		C142DD3B1BF119DF006A6295 /* CourseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD3A1BF119DF006A6295 /* CourseVC.swift */; };
 		C142DD3D1BF119F5006A6295 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C142DD3C1BF119F5006A6295 /* ChatVC.swift */; };
+		C18410EC1CAE1CD300AAEDB4 /* CatagoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18410E91CAE1CD300AAEDB4 /* CatagoryCell.swift */; };
+		C18410ED1CAE1CD300AAEDB4 /* CatagoryTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18410EA1CAE1CD300AAEDB4 /* CatagoryTableVC.swift */; };
+		C18410EE1CAE1CD300AAEDB4 /* CustomGMSMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18410EB1CAE1CD300AAEDB4 /* CustomGMSMarker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		C142DD2E1BF11559006A6295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C142DD3A1BF119DF006A6295 /* CourseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseVC.swift; sourceTree = "<group>"; };
 		C142DD3C1BF119F5006A6295 /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		C18410E91CAE1CD300AAEDB4 /* CatagoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatagoryCell.swift; sourceTree = "<group>"; };
+		C18410EA1CAE1CD300AAEDB4 /* CatagoryTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatagoryTableVC.swift; sourceTree = "<group>"; };
+		C18410EB1CAE1CD300AAEDB4 /* CustomGMSMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGMSMarker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 			children = (
 				C142DD0A1BF11559006A6295 /* AppDelegate.swift */,
 				C142DD0C1BF11559006A6295 /* DailyLifeVC.swift */,
+				C18410E91CAE1CD300AAEDB4 /* CatagoryCell.swift */,
+				C18410EA1CAE1CD300AAEDB4 /* CatagoryTableVC.swift */,
+				C18410EB1CAE1CD300AAEDB4 /* CustomGMSMarker.swift */,
 				C142DD0E1BF11559006A6295 /* EventsVC.swift */,
 				C142DD3A1BF119DF006A6295 /* CourseVC.swift */,
 				C142DD3C1BF119F5006A6295 /* ChatVC.swift */,
@@ -347,10 +356,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C142DD0F1BF11559006A6295 /* EventsVC.swift in Sources */,
+				C18410EC1CAE1CD300AAEDB4 /* CatagoryCell.swift in Sources */,
 				C142DD0B1BF11559006A6295 /* AppDelegate.swift in Sources */,
 				C142DD3D1BF119F5006A6295 /* ChatVC.swift in Sources */,
+				C18410EE1CAE1CD300AAEDB4 /* CustomGMSMarker.swift in Sources */,
 				C142DD3B1BF119DF006A6295 /* CourseVC.swift in Sources */,
 				C142DD0D1BF11559006A6295 /* DailyLifeVC.swift in Sources */,
+				C18410ED1CAE1CD300AAEDB4 /* CatagoryTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
