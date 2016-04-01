@@ -80,6 +80,7 @@
                             <constraint firstItem="A90-y4-Hvv" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="6RC-37-kWH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qh9-e0-UXW" secondAttribute="trailing" constant="-20" id="930-RS-OyY"/>
                             <constraint firstItem="FSv-0w-fdF" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="ATo-1Y-H9G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A90-y4-Hvv" secondAttribute="trailing" constant="67" id="HB5-iA-1bY"/>
                             <constraint firstItem="crt-ZE-dkW" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="273" id="KOX-EO-nCM"/>
                             <constraint firstItem="crt-ZE-dkW" firstAttribute="leading" secondItem="A90-y4-Hvv" secondAttribute="trailing" constant="5" id="bWB-5x-U1u"/>
                             <constraint firstItem="Qh9-e0-UXW" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="44" id="bg6-PL-J3C"/>
@@ -89,7 +90,14 @@
                             <constraint firstAttribute="bottomMargin" secondItem="FSv-0w-fdF" secondAttribute="bottom" id="l7g-7X-Fmx"/>
                             <constraint firstItem="Qh9-e0-UXW" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-20" id="qpA-gX-AKB"/>
                             <constraint firstItem="crt-ZE-dkW" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="rbp-1O-zrC"/>
+                            <constraint firstItem="crt-ZE-dkW" firstAttribute="leading" secondItem="A90-y4-Hvv" secondAttribute="trailing" constant="5" id="sgz-SM-Myq"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KOX-EO-nCM"/>
+                                <exclude reference="bWB-5x-U1u"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Daily Life" image="dailylife" id="acW-dT-cKf"/>
                     <toolbarItems/>
